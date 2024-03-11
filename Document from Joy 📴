@@ -1,0 +1,68 @@
+import random
+
+import random
+
+def generate_random_story():
+    when = ['A few years ago', 'Yesterday', 'Last night', 'A long time ago', 'On 20th Jan', 'In my childhood', 'During the summer vacation', 'In the distant future', 'Once upon a time']
+    who = ['a clever rabbit', 'a wise elephant', 'a curious mouse', 'a slow turtle', 'a mischievous cat', 'a majestic lion', 'a loyal dog', 'a playful monkey', 'a cuddly bear', 'a colorful bird', 'a graceful giraffe', 'a hopping kangaroo', 'a peaceful panda']
+    residence = ['Barcelona', 'India', 'Germany', 'Venice', 'England', 'New York', 'Tokyo', 'Paris', 'Sydney', 'Rio de Janeiro', 'Moscow', 'Cairo']
+    went = ['cinema', 'university', 'seminar', 'school', 'laundry', 'zoo', 'park', 'beach', 'restaurant', 'hospital', 'library', 'gym', 'market', 'concert']
+    happened = ['made a lot of friends', 'ate a delicious burger', 'found a mysterious key', 'solved a challenging mystery', 'wrote an inspiring book', 'learned a new language', 'built a cozy house', 'won a prestigious competition', 'started a successful business', 'adopted a cute pet', 'discovered a hidden treasure', 'traveled around the world', 'met a famous celebrity', 'learned to dance gracefully', 'won a life-changing lottery']
+
+    story_parts = [
+        f"{random.choice(when)}, {random.choice(who)} lived in {random.choice(residence)}. One {random.choice(when)}, they decided to visit the {random.choice(went)}. While walking to the {random.choice(went)}, they encountered {random.choice(who)}. They decided to team up and continued their journey...",
+        f"At the {random.choice(went)}, they {random.choice(happened)}. The {random.choice(went)} was bustling with activity, and {random.choice(who)} was amazed by the sights and sounds around them. They spent hours exploring and enjoying the {random.choice(went)}. Afterwards, they decided to have a meal at a nearby {random.choice(['restaurant', 'cafe', 'food court'])}...",
+        f"After spending some time at the {random.choice(went)}, they decided to explore {random.choice(residence)} further. They stumbled upon a {random.choice(['hidden', 'forgotten', 'enchanted', 'mysterious'])} {random.choice(['forest', 'cave', 'castle', 'ruins'])} and decided to explore it. Inside, they found many {random.choice(['treasures', 'mysteries', 'secrets', 'challenges'])} waiting to be discovered...",
+        f"While exploring the {random.choice(['forest', 'cave', 'castle', 'ruins'])}, they encountered {random.choice(who)} who was also exploring the area. Together, they faced many challenges and overcame them with courage and determination. They formed a strong bond and decided to continue their adventures together...",
+        f"Eventually, they returned home, tired but happy, with memories that would last a lifetime. They realized that the greatest adventures are the ones shared with friends."
+    ]
+
+    # Concatenate the story parts to form the complete story
+    story = ' '.join(story_parts)
+
+    return story
+
+# Example
+print(generate_random_story())
+import tkinter as tk
+from Joy import generate_random_story
+import random
+
+
+
+
+def generate_story():
+    label.config(bg="red", fg="white")
+    story = generate_random_story()
+    text_area.delete(1.0, tk.END)
+    text_area.insert(tk.END, story)
+    animate_text()
+
+def animate_text():
+    colors = ['red', 'blue', 'green']
+    for _ in range(5):  # Perform animation 5 times
+        text_area.config(fg=random.choice(colors))
+        root.update()
+        root.after(200)  # Delay in milliseconds
+        text_area.config(fg='black')
+        root.update()
+        root.after(200)
+# Main window
+root = tk.Tk()
+root.configure(bg="lightblue")
+root.title("Interactive Random Story Generator")
+root.geometry("600x400")
+
+
+
+label = tk.Label(root, text="Generate Random Story", font=("Arial", 18))
+label.pack(pady=10)
+
+generate_button = tk.Button(root, text="Generate Story",bg="blue", fg="white",command=generate_story)
+generate_button.pack(pady=10)
+
+text_area = tk.Text(root, width=600, height=155,bg="orange",wrap=tk.WORD)
+text_area.pack()
+
+
+root.mainloop()
